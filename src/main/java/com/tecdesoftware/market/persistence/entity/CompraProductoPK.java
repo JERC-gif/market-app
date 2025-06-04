@@ -7,7 +7,6 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class CompraProductoPK {
 
-
     @Column(name= "id_compra")
     private Integer idCompra;
 

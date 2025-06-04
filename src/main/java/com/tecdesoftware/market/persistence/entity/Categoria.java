@@ -1,13 +1,27 @@
 package com.tecdesoftware.market.persistence.entity;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
 
-public class categoria{
+public class Categoria{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categorias")
+
+    private Integer  idCategoria;
+    private String descripcion;
+    private  Boolean estado;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
+    @jakarta.persistence.Id
+    private Long id;
+
     public Integer getIdCategoria() {
         return idCategoria;
     }
@@ -32,12 +46,20 @@ public class categoria{
         this.estado = estado;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categorias")
-    private Integer  idCategoria;
+    public List<Producto> getProductos() {
+        return productos;
+    }
 
-    private String descripcion;
-    private  Boolean estado;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
 }
