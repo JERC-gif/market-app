@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "clientes")
 
-public class cliente {
+public class Cliente {
 
     @Id
     // porque el ID sera la CURP, será manual @GeneratedValue
@@ -19,6 +19,7 @@ public class cliente {
     private  String Direccion;
     @Column(name = "correo_electonico")
     private  String correoElectronico;
+
 
     public Integer getId() {
         return id;

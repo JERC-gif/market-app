@@ -3,6 +3,7 @@ package com.tecdesoftware.market.persistence.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Compras")
@@ -13,6 +14,30 @@ public class Compra {
 
     @Column (name = "id_compras")
     private Integer idCompras;
+
+    @Column (name = "id_Cliente")
+    private Integer idCliente;
+
+    private LocalDateTime fecha;
+
+    @Column (name = "medio_pago")
+    private String medioPago;
+
+    private String comentario;
+
+    private Boolean estado;
+
+    @OneToOne
+    @JoinColumn (name = "id_cliente", insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "producto")
+    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    private List<CompraProducto> compraProductos;
+
+    @OneToMany(mappedBy = "compra")
+    private List<Compra> compras;
+
 
     public Integer getIdCompras() {
         return idCompras;
@@ -61,18 +86,5 @@ public class Compra {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
-    @Column (name = "id_Cliente")
-    private Integer idCliente;
-
-    private LocalDateTime fecha;
-
-    @Column (name = "medio_pago")
-    private String medioPago;
-
-    private String comentario;
-
-    private Boolean estado;
-
 
 }
