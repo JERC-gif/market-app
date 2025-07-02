@@ -1,5 +1,7 @@
 package com.tecdesoftware.market.persistence.entity;
 
+import com.tecdesoftware.market.persistence.entity.Categoria;
+
 import jakarta.persistence.*;
 
 import javax.naming.Name;
@@ -18,6 +20,10 @@ public class Producto {
 
     @Column (name = "id_categoria")
     private int idCategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
 
     @Column (name = "codigo_barras")
     private String CodigoBarras;
