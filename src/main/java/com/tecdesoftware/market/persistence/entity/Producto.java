@@ -1,45 +1,47 @@
 package com.tecdesoftware.market.persistence.entity;
 
+import com.tecdesoftware.market.persistence.entity.Categoria;
+
 import jakarta.persistence.*;
 
-import java.util.List;
-
+import javax.naming.Name;
 @Entity
-@Table(name= "productos")
+@Table(name="productos")
 public class Producto {
 
     @Id //Es la llave primaria
-    //Autogenara id autoincrementables
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Autogenera ID autoincrementables
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id_producto")
+    private Integer idProducto;
 
-    @Column(name = "id_producto")
-    private int idProducto;
-
+    //Si se llama la tabla de la BD y la de aqui son iguales, no se necesita poner el @Column(name=" ")
     private String nombre;
 
     @Column(name = "id_categoria")
     private Integer idCategoria;
 
-    @Column(name = "codigo_barrar")
+    @Column(name = "codigo_barras")
     private String codigoBarras;
 
-    @Column(name = "precio_venta")
+    @Column(name="precio_venta")
     private Double precioVenta;
 
     @Column(name = "cantidad_stock")
     private Integer cantidadStock;
+
     private Boolean estado;
 
+    //Agregamos las relaciones
     @ManyToOne
-    @JoinColumn(name = "id_categoria,")
+    @JoinColumn(name="id_categoria", insertable=false, updatable=false)
     private Categoria categoria;
 
-
-    public int getIdProducto() {
+    public Integer getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 

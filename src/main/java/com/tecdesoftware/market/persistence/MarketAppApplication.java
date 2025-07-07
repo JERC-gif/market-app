@@ -1,4 +1,4 @@
-package com.tecdesoftware.market;
+package com.tecdesoftware.market.persistence;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

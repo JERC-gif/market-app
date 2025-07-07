@@ -31,13 +31,8 @@ public class Compra {
     @JoinColumn (name = "id_cliente", insertable = false, updatable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "producto")
-    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CompraProducto> compraProductos;
-
-    @OneToMany(mappedBy = "compra")
-    private List<Compra> compras;
-
 
     public Integer getIdCompras() {
         return idCompras;
