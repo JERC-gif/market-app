@@ -1,21 +1,17 @@
 package com.tecdesoftware.market.persistence.entity;
 
-import com.tecdesoftware.market.persistence.entity.Categoria;
-
 import jakarta.persistence.*;
 
-import javax.naming.Name;
 @Entity
-@Table(name="productos")
+@Table(name = "productos")
 public class Producto {
 
-    @Id //Es la llave primaria
-    //Autogenera ID autoincrementables
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id_producto")
+    @Id//LLave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id_producto")
     private Integer idProducto;
 
-    //Si se llama la tabla de la BD y la de aqui son iguales, no se necesita poner el @Column(name=" ")
     private String nombre;
 
     @Column(name = "id_categoria")
@@ -24,7 +20,7 @@ public class Producto {
     @Column(name = "codigo_barras")
     private String codigoBarras;
 
-    @Column(name="precio_venta")
+    @Column(name = "precio_venta")
     private Double precioVenta;
 
     @Column(name = "cantidad_stock")
@@ -32,9 +28,8 @@ public class Producto {
 
     private Boolean estado;
 
-    //Agregamos las relaciones
     @ManyToOne
-    @JoinColumn(name="id_categoria", insertable=false, updatable=false)
+    @JoinColumn (name = "id_categoria", insertable = false, updatable = false)
     private Categoria categoria;
 
     public Integer getIdProducto() {
@@ -101,3 +96,6 @@ public class Producto {
         this.categoria = categoria;
     }
 }
+
+
+

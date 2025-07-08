@@ -2,20 +2,20 @@ package com.tecdesoftware.market.domain.service;
 
 import com.tecdesoftware.market.domain.Product;
 import com.tecdesoftware.market.domain.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-
-
+@Service
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    // Inyección de dependencias por constructor
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> getAll() {
         return productRepository.getAll();
@@ -29,20 +29,14 @@ public class ProductService {
         return productRepository.getByCategory(categoryId);
     }
 
-    public Product save (Product product ){
+    public Product save(Product product) {
         return productRepository.save(product);
     }
 
-    public boolean deleteProduct(int productId) {
-        //verifica que exista el producto se desea eliminar
-        if (getProduct(productId).isPresent()) {
+    public boolean delete(int productId) {
+        return getProduct(productId).map(product -> {
             productRepository.delete(productId);
             return true;
-        } else {
-        return false;}
+        }).orElse(false);
     }
-
-    // Controlador da instruccion
-    //Servicio Decide
-    //Repositorio Da datos
 }

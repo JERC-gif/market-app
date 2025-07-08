@@ -1,7 +1,6 @@
 package com.tecdesoftware.market.domain;
 
 public class Category {
-
     private int categoryId;
     private String category;
     private boolean active;
@@ -28,5 +27,6 @@ public class Category {
 
     public void setActive(boolean active) {
         this.active = active;
+
     }
 }
